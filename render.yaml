@@ -1,7 +1,7 @@
 services:
   - type: web
     name: prometheus
-    region: frankfurt
+    region: oregon
     plan: starter
     runtime: docker
     buildFilter:
@@ -24,22 +24,22 @@ services:
       mountPath: /prometheus
       sizeGB: 3
 
-  - type: web
-    name: otelcol
-    region: frankfurt
-    plan: starter
-    runtime: docker
-    buildFilter:
-      paths:
-      - otelcol/**/*
-    dockerfilePath: ./otelcol/Dockerfile
-    dockerContext: ./otelcol
-    dockerCommand: /otelcol --config=/etc/otelcol/config.yaml
-    envVars:
-      - key: PORT
-        value: 4318
-      - key: OTEL_PROM_URL
-        fromService:
-          name: prometheus
-          type: pserv
-          property: hostport
+  # - type: web
+  #   name: otelcol
+  #   region: oregon
+  #   plan: starter
+  #   runtime: docker
+  #   buildFilter:
+  #     paths:
+  #     - otelcol/**/*
+  #   dockerfilePath: ./otelcol/Dockerfile
+  #   dockerContext: ./otelcol
+  #   dockerCommand: /otelcol --config=/etc/otelcol/config.yaml
+  #   envVars:
+  #     - key: PORT
+  #       value: 4318
+  #     - key: OTEL_PROM_URL
+  #       fromService:
+  #         name: prometheus
+  #         type: pserv
+  #         property: hostport
