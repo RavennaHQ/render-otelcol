@@ -41,5 +41,5 @@ services:
       - key: OTEL_PROM_URL
         fromService:
           name: prometheus
-          type: pserv
+          type: web
           property: hostport
